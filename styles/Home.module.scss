@@ -1,0 +1,68 @@
+.container{
+  margin: 3em auto 0;
+  max-width: 60em;
+}
+
+.mainWrapper{
+  max-width: 60em;
+}
+
+.dateInputWrapper :global(.icon)  :global(svg.svg-inline--fa){
+  height: 100%;
+}
+
+.radioList {
+  label {
+    display: block;
+
+    & + label {
+      margin-left: 0;
+      margin-top: .5em;
+    }
+  }
+  :global(.radio + .radio){
+    margin-left: 0;
+  }
+
+  :global(.radio){
+    :global(svg.svg-inline--fa){
+      margin-left: .5em;
+    }
+  }
+
+}
+
+.confirmButtonGroup{
+  margin-top: 2em;
+}
+
+.resultsPanel{
+  margin-top: 2em;
+  :global(.panel-block) {
+    flex-direction: column;
+    align-items: start;
+  }
+  :global(.field + .field){
+    margin-top: 1em;
+  }
+
+  .results{
+    display: grid;
+    grid-template-columns: 10em 50px;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 20px;
+    align-items: end;
+  }
+
+  .copyButtonWrapper{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+    align-items: center;
+
+    .notifierLabel{
+      color: green;
+    }
+  }
+}
