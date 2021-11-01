@@ -1,15 +1,7 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+
 import styles from "../styles/Home.module.scss";
-import {
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  SyntheticEvent,
-  useRef,
-  useState,
-} from "react";
+import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { IMaskInput } from "react-imask";
 import parse from "date-fns/parse";
 import {
