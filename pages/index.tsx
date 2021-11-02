@@ -248,7 +248,7 @@ const Home: NextPage = () => {
           <label className="label">Počet</label>
           <div className={`control`}>
             <input
-              className="input"
+              className={`input ${styles.countInput}`}
               type="number"
               value={count}
               onChange={(e) => setCount(Number(e.target.value))}

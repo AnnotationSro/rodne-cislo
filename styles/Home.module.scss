@@ -13,8 +13,13 @@
   }
 }
 
+
 .mainWrapper{
   max-width: 60em;
+
+  :global(.input){
+    width: 300px;
+  }
 }
 
 .dateInputWrapper :global(.icon)  :global(svg.svg-inline--fa){
