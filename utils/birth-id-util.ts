@@ -1,3 +1,6 @@
+import { subYears } from "date-fns";
+import { subMonths } from "date-fns";
+
 export type GenderType = "MALE" | "FEMALE";
 export type BirthIdGeneratorResult = { withDelimeter: string; pure: string };
 /**
@@ -65,6 +68,15 @@ export function parseBirthId(birthId: string): Date | null {
   }
 }
 
+export function generateRandomDate(age: number): Date {
+  let now = new Date();
+  let newDate = subYears(now, age);
+  newDate = subMonths(newDate, 1); //substract 1 month - this will ensure correct age of the new date
+  newDate.setMonth(Math.floor(Math.random() * newDate.getMonth()));
+  newDate.setDate(Math.floor(Math.random() * 27) + 1);
+  return newDate;
+}
+
 export function generateBirthId(
   birthDate: Date,
   gender: GenderType
@@ -79,11 +91,13 @@ export function generateBirthId(
   let firstPart = [year, paddingLeft(month), paddingLeft(day)].join("");
 
   let suffixLength = 4;
+  let randomSeed = Math.floor(Math.random() * 9980);
   if (birthDate.getFullYear() <= 1954) {
     suffixLength = 3;
+    randomSeed = Math.floor(Math.random() * 980);
   }
   let tempBirthId = paddingRight(Number(firstPart), suffixLength);
-  let birthId = String(nextNumberDivided11(Number(tempBirthId)));
+  let birthId = String(nextNumberDivided11(Number(tempBirthId) + randomSeed));
   return {
     pure: birthId,
     withDelimeter: addDelimeter(birthId),
@@ -106,4 +120,7 @@ function paddingLeft(digit: number): string {
 
 function paddingRight(value: number, paddingCount: number): string {
   return String(value).padEnd(String(value).length + paddingCount, "0");
+}
+function subMonth(now: Date) {
+  throw new Error("Function not implemented.");
 }

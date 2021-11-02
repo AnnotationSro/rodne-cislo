@@ -3,6 +3,16 @@
   max-width: 60em;
 }
 
+.birthDateAgeWrapper{
+  display: flex;
+  flex-direction: row;
+  column-gap: 1em;
+
+  :global(.radio).selected span.title{
+    font-weight: bold;
+  }
+}
+
 .mainWrapper{
   max-width: 60em;
 }
@@ -20,6 +30,10 @@
       margin-top: .5em;
     }
   }
+  .selected .title{
+    font-weight: bold;
+  }
+
   :global(.radio + .radio){
     margin-left: 0;
   }
@@ -47,22 +61,35 @@
   }
 
   .results{
-    display: grid;
-    grid-template-columns: 10em 50px;
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 20px;
-    align-items: end;
-  }
+    overflow: auto;
+    max-height: 50em;
 
-  .copyButtonWrapper{
-    display: flex;
-    flex-direction: row;
-    column-gap: 1em;
-    align-items: center;
+    table{
+      table-layout: fixed;
+      th{
+        text-align: center;
+        &:first-of-type{
+          width: 60px;
+        }
+      }
 
-    .notifierLabel{
-      color: green;
+      tr.checked{
+         td{
+           position: relative;
+
+           &:not(:first-of-type):before {
+             content: " ";
+             position: absolute;
+             top: 50%;
+             left: 0;
+             border-bottom: 1px solid #111;
+             width: 100%;
+             z-index: 1;
+           }
+        }
+      }
     }
   }
 }
+
+

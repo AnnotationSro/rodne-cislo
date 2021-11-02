@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import {
   faCalendarAlt as farCalendarAlt,
   faCopy as farCopy,
+  faCheckSquare as farCheckSquare,
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faVenus as fasVenus,
@@ -33,7 +34,7 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 //   );
 
 // Import @fortawesome/free-regular-svg-icons
-library.add(farCalendarAlt, farCopy);
+library.add(farCalendarAlt, farCopy, farCheckSquare);
 
 // Import @fortawesome/free-solid-svg-icons
 library.add(fasMars, fasVenus, fasCogs);

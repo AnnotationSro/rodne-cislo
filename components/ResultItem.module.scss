@@ -1,0 +1,28 @@
+.wrapper{
+   display: flex;
+  flex-direction: row;
+  column-gap: 1em;
+  align-items: center;
+  justify-content: center;
+
+
+  .notifierLabel{
+    color: green;
+    transition: .5s opacity;
+    opacity: 0;
+    position: absolute;
+    left: calc(100% + .5em);
+
+    &.visible{
+      opacity: 1;
+    }
+  }
+}
+
+.copyButtonWrapper{
+  display: flex;
+  flex-direction: row;
+  column-gap: 1em;
+  align-items: center;
+  position: relative;
+}
