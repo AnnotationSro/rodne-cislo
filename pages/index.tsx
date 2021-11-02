@@ -110,7 +110,7 @@ const Home: NextPage = () => {
         </div>
 
         <div className="field">
-          <label className="label">Name</label>
+          <label className="label">Pohlavie</label>
           <div className={`control ${styles.radioList}`}>
             <label className="radio">
               <input
