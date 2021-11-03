@@ -22,3 +22,7 @@
 button svg:not(:only-child){
   margin-right: .5em;
 }
+
+div.field:not(:last-child) {
+  margin-bottom: 1em;
+}

@@ -103,144 +103,150 @@ const Home: NextPage = () => {
         onSubmit={(e) => onFormSubmit(e)}
       >
         <div className={`field ${styles.birthDateAgeWrapper}`}>
-          <label
-            className={`radio ${
-              selectedBirth === "AGE" ? styles.selected : ""
-            }`}
-            onClick={() => {
-              setSelectedBirth("AGE");
-              setTimeout(() => {
-                ageInputElement.current!.focus();
-              }, 0);
-            }}
-          >
-            <div>
-              <input
-                type="radio"
-                name="birth-date-radio"
-                id="radio-age"
-                value="AGE"
-                checked={selectedBirth === "AGE"}
-                onChange={(changeEvent) =>
-                  setSelectedBirth(changeEvent.target.value)
-                }
-              />
-              <span className={styles.title}>Vek</span>
-            </div>
-            <div className={`control`}>
-              <input
-                ref={ageInputElement}
-                className="input"
-                type="number"
-                min="0"
-                defaultValue={"42"}
-                disabled={selectedBirth !== "AGE"}
-              />
-            </div>
-          </label>
-
-          <label
-            className={`radio ${
-              selectedBirth === "BIRTH_DATE" ? styles.selected : ""
-            }`}
-            onClick={() => {
-              setSelectedBirth("BIRTH_DATE");
-              setTimeout(() => {
-                dateInputElement.current!.focus();
-              }, 0);
-            }}
-          >
-            <div>
-              <input
-                type="radio"
-                name="birth-date-radio"
-                id="radio-birth-date"
-                value="BIRTH_DATE"
-                checked={selectedBirth === "BIRTH_DATE"}
-                onChange={(changeEvent) =>
-                  setSelectedBirth(changeEvent.target.value)
-                }
-              />
-              <span className={styles.title}> Dátum narodenia</span>
-            </div>
-            <div
-              className={`control has-icons-right ${styles.dateInputWrapper}`}
+          <div>
+            <label
+              className={`radio ${
+                selectedBirth === "AGE" ? styles.selected : ""
+              }`}
+              onClick={() => {
+                setSelectedBirth("AGE");
+                setTimeout(() => {
+                  ageInputElement.current!.focus();
+                }, 0);
+              }}
             >
-              <IMaskInput
-                className={"input"}
-                mask={Date}
-                radix="."
-                value={date}
-                disabled={selectedBirth !== "BIRTH_DATE"}
-                lazy={false}
-                unmask={true} // true|false|'typed'
-                inputRef={(el: HTMLElement) => {
-                  // @ts-ignore
-                  dateInputElement.current = el;
-                }} // access to nested input
-                // DO NOT USE onChange TO HANDLE CHANGES!
-                // USE onAccept INSTEAD
-                onAccept={
-                  // depending on prop above first argument is
-                  // `value` if `unmask=false`,
-                  // `unmaskedValue` if `unmask=true`,
-                  // `typedValue` if `unmask='typed'`
-                  (value: any, mask: any) => {
-                    if (value.length === "dd.MM.yyyy".length) {
-                      let date = parse(value, "dd.MM.yyyy", new Date());
-                      setBirthDate(date);
-                    } else {
-                      setBirthDate(null);
-                    }
-
-                    setDate(value);
+              <div>
+                <input
+                  type="radio"
+                  name="birth-date-radio"
+                  id="radio-age"
+                  value="AGE"
+                  checked={selectedBirth === "AGE"}
+                  onChange={(changeEvent) =>
+                    setSelectedBirth(changeEvent.target.value)
                   }
-                }
-              />
+                />
+                <span className={styles.title}>Vek</span>
+              </div>
+              <div className={`control`}>
+                <input
+                  ref={ageInputElement}
+                  className="input"
+                  type="number"
+                  min="0"
+                  defaultValue={"42"}
+                  disabled={selectedBirth !== "AGE"}
+                />
+              </div>
+            </label>
+          </div>
+          <div>
+            <label
+              className={`radio ${
+                selectedBirth === "BIRTH_DATE" ? styles.selected : ""
+              }`}
+              onClick={() => {
+                setSelectedBirth("BIRTH_DATE");
+                setTimeout(() => {
+                  dateInputElement.current!.focus();
+                }, 0);
+              }}
+            >
+              <div>
+                <input
+                  type="radio"
+                  name="birth-date-radio"
+                  id="radio-birth-date"
+                  value="BIRTH_DATE"
+                  checked={selectedBirth === "BIRTH_DATE"}
+                  onChange={(changeEvent) =>
+                    setSelectedBirth(changeEvent.target.value)
+                  }
+                />
+                <span className={styles.title}> Dátum narodenia</span>
+              </div>
+              <div
+                className={`control has-icons-right ${styles.dateInputWrapper}`}
+              >
+                <IMaskInput
+                  className={"input"}
+                  mask={Date}
+                  radix="."
+                  value={date}
+                  disabled={selectedBirth !== "BIRTH_DATE"}
+                  lazy={false}
+                  unmask={true} // true|false|'typed'
+                  inputRef={(el: HTMLElement) => {
+                    // @ts-ignore
+                    dateInputElement.current = el;
+                  }} // access to nested input
+                  // DO NOT USE onChange TO HANDLE CHANGES!
+                  // USE onAccept INSTEAD
+                  onAccept={
+                    // depending on prop above first argument is
+                    // `value` if `unmask=false`,
+                    // `unmaskedValue` if `unmask=true`,
+                    // `typedValue` if `unmask='typed'`
+                    (value: any, mask: any) => {
+                      if (value.length === "dd.MM.yyyy".length) {
+                        let date = parse(value, "dd.MM.yyyy", new Date());
+                        setBirthDate(date);
+                      } else {
+                        setBirthDate(null);
+                      }
 
-              <span className="icon is-small is-right">
-                <FontAwesomeIcon icon={["far", "calendar-alt"]} />
-              </span>
-            </div>
-          </label>
+                      setDate(value);
+                    }
+                  }
+                />
+
+                <span className="icon is-small is-right">
+                  <FontAwesomeIcon icon={["far", "calendar-alt"]} />
+                </span>
+              </div>
+            </label>
+          </div>
         </div>
 
         <div className="field">
           <label className="label">Pohlavie</label>
           <div className={`control ${styles.radioList}`}>
-            <label
-              className={`radio ${
-                selectedGender === "MALE" ? styles.selected : ""
-              }`}
-            >
-              <input
-                type="radio"
-                name="gender-radio"
-                id="radio-male"
-                value="MALE"
-                checked={selectedGender === "MALE"}
-                onChange={(changeEvent) => onGenderChange(changeEvent)}
-              />
-              <span className={styles.title}>Muž</span>
-              <FontAwesomeIcon icon="mars" />
-            </label>
-
-            <label
-              className={`radio ${
-                selectedGender === "FEMALE" ? styles.selected : ""
-              }`}
-            >
-              <input
-                type="radio"
-                name="gender-radio"
-                id="radio-female"
-                value="FEMALE"
-                checked={selectedGender === "FEMALE"}
-                onChange={(changeEvent) => onGenderChange(changeEvent)}
-              />
-              <span className={styles.title}>Žena</span>
-              <FontAwesomeIcon icon="venus" />
-            </label>
+            <div>
+              <label
+                className={`radio ${
+                  selectedGender === "MALE" ? styles.selected : ""
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="gender-radio"
+                  id="radio-male"
+                  value="MALE"
+                  checked={selectedGender === "MALE"}
+                  onChange={(changeEvent) => onGenderChange(changeEvent)}
+                />
+                <span className={styles.title}>Muž</span>
+                <FontAwesomeIcon icon="mars" />
+              </label>
+            </div>
+            <div>
+              <label
+                className={`radio ${
+                  selectedGender === "FEMALE" ? styles.selected : ""
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="gender-radio"
+                  id="radio-female"
+                  value="FEMALE"
+                  checked={selectedGender === "FEMALE"}
+                  onChange={(changeEvent) => onGenderChange(changeEvent)}
+                />
+                <span className={styles.title}>Žena</span>
+                <FontAwesomeIcon icon="venus" />
+              </label>
+            </div>
           </div>
         </div>
 

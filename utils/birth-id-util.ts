@@ -81,7 +81,7 @@ export function generateBirthId(
   birthDate: Date,
   gender: GenderType
 ): BirthIdGeneratorResult {
-  let year = birthDate.getFullYear() % 100; //we need only last 2 digits
+  let year = String(birthDate.getFullYear()).substring(2);
   let month = birthDate.getMonth() + 1;
   if (gender === "FEMALE") {
     month += 50;
@@ -96,8 +96,14 @@ export function generateBirthId(
     suffixLength = 3;
     randomSeed = Math.floor(Math.random() * 980);
   }
-  let tempBirthId = paddingRight(Number(firstPart), suffixLength);
+  let tempBirthId = paddingRight(firstPart, suffixLength);
+
+  let originalLength = tempBirthId.length; //by converting string to Number, we may loose leading 0
   let birthId = String(nextNumberDivided11(Number(tempBirthId) + randomSeed));
+  if (originalLength !== birthId.length) {
+    //we have lost leading zeroes
+    birthId = birthId.padStart(originalLength, "0");
+  }
   return {
     pure: birthId,
     withDelimeter: addDelimeter(birthId),
@@ -118,9 +124,6 @@ function paddingLeft(digit: number): string {
   return String(digit).padStart(2, "0");
 }
 
-function paddingRight(value: number, paddingCount: number): string {
+function paddingRight(value: number | string, paddingCount: number): string {
   return String(value).padEnd(String(value).length + paddingCount, "0");
-}
-function subMonth(now: Date) {
-  throw new Error("Function not implemented.");
 }
