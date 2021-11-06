@@ -10,6 +10,7 @@ import {
   faVenus as fasVenus,
   faMars as fasMars,
   faCogs as fasCogs,
+  faExchangeAlt as fasExchangeAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 // See https://github.com/FortAwesome/react-fontawesome#integrating-with-other-tools-and-frameworks
@@ -37,4 +38,4 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 library.add(farCalendarAlt, farCopy, farCheckSquare);
 
 // Import @fortawesome/free-solid-svg-icons
-library.add(fasMars, fasVenus, fasCogs);
+library.add(fasMars, fasVenus, fasCogs, fasExchangeAlt);

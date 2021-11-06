@@ -1,5 +1,6 @@
 import { subYears } from "date-fns";
 import { subMonths } from "date-fns";
+import { rodnecislo } from "rodnecislo";
 
 export type GenderType = "MALE" | "FEMALE";
 export type BirthIdGeneratorResult = { withDelimeter: string; pure: string };
@@ -126,4 +127,8 @@ function paddingLeft(digit: number): string {
 
 function paddingRight(value: number | string, paddingCount: number): string {
   return String(value).padEnd(String(value).length + paddingCount, "0");
+}
+
+export function validateBirthId(value: string) {
+  return rodnecislo(value).isValid();
 }

@@ -1,0 +1,18 @@
+.mainContainer{
+  margin: 3em auto 0;
+  max-width: 60em;
+}
+
+.headerGroup{
+  display: flex;
+  justify-content: space-between;
+
+  .titleEmphasis{
+    font-style: italic;
+    text-decoration: underline;
+  }
+
+  :global(.button){
+    width: 8em;
+  }
+}

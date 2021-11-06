@@ -1,13 +1,7 @@
 import type { NextPage } from "next";
 
 import styles from "../styles/Home.module.scss";
-import React, {
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useRef,
-  useState,
-} from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import { IMaskInput } from "react-imask";
 import parse from "date-fns/parse";
 import {
@@ -97,7 +91,6 @@ const Home: NextPage = () => {
   // @ts-ignore
   return (
     <div className={`${styles.container}`}>
-      <h1 className={"title"}>Generátor rodného čísla</h1>
       <form
         className={`box ${styles.mainWrapper}`}
         onSubmit={(e) => onFormSubmit(e)}
